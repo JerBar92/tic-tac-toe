@@ -30,7 +30,11 @@ body {
 }
 
 .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 6rem;
   height: 6rem;
   border: 1px solid black;
+  font-size: 3rem;
 }
