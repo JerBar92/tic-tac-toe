@@ -20,7 +20,12 @@ body {
   gap: 3rem;
 }
 
-#startButton {
+#buttons {
+  display: flex;
+}
+
+#startButton,
+#restartButton {
   margin: 2rem;
 }
 
