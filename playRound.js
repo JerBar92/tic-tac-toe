@@ -1,4 +1,5 @@
 import { gameBoard } from "./gameBoard.js";
+import { victory } from "./victory.js";
 
 export const playRound = (function () {
   let players = [];
@@ -10,6 +11,8 @@ export const playRound = (function () {
     displayActivePlayer.textContent = "";
     displayActivePlayer.textContent = `${activePlayer.name}'s turn.`;
   };
+
+  const getActivePlayer = () => activePlayer;
 
   const start = () => {
     players = [
@@ -28,11 +31,12 @@ export const playRound = (function () {
   };
 
   const handleClick = (cell) => {
-    console.log(cell);
     let index = parseInt(cell.id);
+    if (gameBoard.getBoard()[index] !== "") return;
     gameBoard.update(index, activePlayer.mark);
+    //victory.checkVictory();
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
     printNewRound();
   };
-  return { start, handleClick };
+  return { start, handleClick, getActivePlayer };
 })();

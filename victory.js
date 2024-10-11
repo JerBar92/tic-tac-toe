@@ -1,39 +1,38 @@
 import { gameBoard } from "./gameBoard.js";
-import { player } from "./player.js";
+import { playRound } from "./playRound.js";
 
 export const victory = (function () {
-  let gameOn = true;
-  let victory = false;
+  const board = gameBoard.getBoard();
+  const victoryCases = [
+    [board[0], board[1], board[2]],
+    [board[3], board[4], board[5]],
+    [board[6], board[7], board[8]],
+    [board[0], board[3], board[6]],
+    [board[1], board[4], board[7]],
+    [board[2], board[5], board[8]],
+    [board[0], board[4], board[8]],
+    [board[2], board[4], board[6]],
+  ];
 
-  const cell0 = gameBoard.getBoard()[0].textContent;
-  const cell1 = gameBoard.getBoard()[1].textContent;
-  const cell2 = gameBoard.getBoard()[2].textContent;
-  const cell3 = gameBoard.getBoard()[3].textContent;
-  const cell4 = gameBoard.getBoard()[4].textContent;
-  const cell5 = gameBoard.getBoard()[5].textContent;
-  const cell6 = gameBoard.getBoard()[6].textContent;
-  const cell7 = gameBoard.getBoard()[7].textContent;
-  const cell8 = gameBoard.getBoard()[8].textContent;
+  const line =
+    (board[0] === board[1] && board[1] === board[2]) ||
+    (board[3] === board[4] && board[4] === board[5]) ||
+    (board[6] === board[7] && board[7] === board[8]);
 
-  const board = [cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8];
-  gameOn = board.includes("");
+  const column =
+    (board[0] === board[3] && board[3] === board[6]) ||
+    (board[1] === board[4] && board[4] === board[7]) ||
+    (board[2] === board[5] && board[5] === board[8]);
 
-  const checkGameOn = () => gameOn;
+  const diagonal =
+    (board[0] === board[4] && board[4] === board[8]) ||
+    (board[2] === board[4] && board[4] === board[6]);
 
-  if (
-    (cell0 === cell1 && cell1 === cell2) ||
-    (cell3 === cell4 && cell4 === cell5) ||
-    (cell6 === cell7 && cell7 === cell8) ||
-    (cell0 === cell3 && cell3 === cell6) ||
-    (cell1 === cell4 && cell4 === cell7) ||
-    (cell2 === cell5 && cell5 === cell8) ||
-    (cell0 === cell4 && cell4 === cell8) ||
-    (cell2 === cell4 && cell4 === cell6)
-  ) {
-    victory = true;
-  }
+  const checkVictory = () => {
+    console.log(line);
+    console.log(column);
+    console.log(diagonal);
+  };
 
-  const checkVictory = () => victory;
-
-  return { checkGameOn, checkVictory };
+  return { checkVictory };
 })();

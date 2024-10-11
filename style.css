@@ -10,6 +10,10 @@ body {
   align-items: center;
 }
 
+button {
+  padding: 0.2rem 0.3rem;
+}
+
 #title {
   margin: 3rem;
 }
@@ -25,7 +29,7 @@ body {
 }
 
 #startButton,
-#restartButton {
+#resetButton {
   margin: 2rem;
 }
 
